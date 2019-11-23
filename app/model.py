@@ -1,15 +1,15 @@
 #pylint: skip-file
 from app import db
-from flask_login import UserMixin
 from werkzeug.security import generate_password_hash,check_password_hash
-from . import login_manager
+from flask_login import login_manager
+from flask_login import UserMixin
+
+
+# login_manager = LoginManager()
 
 
 
-
-
-
-class Users(userMixin,db,Model):
+class Users(UserMixin,db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer,primary_key = True)
     username = db.Column(db.String(255))
@@ -30,9 +30,9 @@ class Users(userMixin,db,Model):
     def verify_password(self,password):
         return check_password_hash(self.pass_secure,password)
 
-    @login_manager.user_loader
-    def load_user(user_id):
-        return User.query.get(int(user_id))
+    # @login_manager.user_loader
+    # def load_user(user_id):
+    #     return Users.query.get(int(user_id))
 
     def __repr__(self):
         return f'User {self.username}'

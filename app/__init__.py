@@ -6,8 +6,16 @@ from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 
 
+
+
+login_manager = LoginManager()
+login_manager.session_protection = 'strong'
+login_manager.login_view = 'auth.login'
+
+
 bootstrap = Bootstrap()
 db = SQLAlchemy()
+
 
 
 def create_app(config_name):
@@ -18,7 +26,13 @@ def create_app(config_name):
 
     # Initializing flask extensions
     bootstrap.init_app(app)
-    db = SQLAlchemy()
+    db.init_app(app)
+    login_manager.init_app(app)
+
+
+
+    from app.model import Users
+
 
     # Registering the blueprint
     from .main import main as main_blueprint

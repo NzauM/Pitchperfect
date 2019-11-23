@@ -2,7 +2,11 @@ class Config:
     '''
     Configuration parent class
     '''
-    pass
+    
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:Moringa@localhost/pitches'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+
 
 class ProdConfig(Config):
 
