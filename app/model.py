@@ -36,3 +36,16 @@ class Users(UserMixin,db.Model):
 
     def __repr__(self):
         return f'User {self.username}'
+
+
+class Pitches(db.Model):
+    __tablename__ = "pitches"
+
+    id = db.Column(db.Integer,primary_key = True)
+    category = db.Column(db.String)
+    pitch = db.Column(db.String)
+    author = db.Column(db.String)
+
+    def save_pitch(self):
+        db.session.add(self)
+        db.session.commit()
