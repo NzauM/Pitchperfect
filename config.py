@@ -6,6 +6,8 @@ class Config:
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:Moringa@localhost/pitches'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SECRET_KEY = 'M8742'
+    UPLOADED_PHOTOS_DEST = 'app/static/photos'
+
 
 
 

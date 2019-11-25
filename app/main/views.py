@@ -2,8 +2,9 @@
 from . import main
 from flask import render_template,request,redirect,url_for
 from flask_login import login_required,current_user
-from .forms import PitchForm,CommentForm
+from .forms import PitchForm,CommentForm,UpdateProfile
 from ..model import Users,Pitches,Comments
+from app import db,photos
 
 
 @main.route('/')
@@ -54,6 +55,36 @@ def profile(usernam):
 
     return render_template("profile/profile.html",user = user,pitches=pitches)
 
+
+@main.route('/user/<usernam>/update',methods = ['GET','POST'])
+@login_required
+def update_profile(usernam):
+    user = Users.query.filter_by(username = usernam).first()
+    if user is None:
+        abort(404)
+
+    form = UpdateProfile()
+
+    if form.validate_on_submit():
+        user.bio = form.bio.data
+
+        db.session.add(user)
+        db.session.commit()
+
+        return redirect(url_for('.profile',usernam = user.username))
+
+    return render_template('profile/update.html',form = form)
+
+@main.route('/user/<usernam>/update/pic',methods=['POST'])
+@login_required
+def update_pic(usernam):
+    user = Users.query.filter_by(username = usernam).first()
+    if 'photo' in request.files:
+        filename = photos.save(request.files['photo'])
+        path = f'photos/{filename}'
+        user.profile_pic_path = path
+        db.session.commit()
+    return redirect(url_for('main.profile',usernam = usernam))
 
 @main.route('/pitch,<id>')
 @login_required

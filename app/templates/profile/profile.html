@@ -25,9 +25,16 @@
     <div class="row">
         <div class="col-md-3">
             {% if user.profile_pic_path %}
-            <img src=" {{url_for('static',filename = user.profile_pic_path)}} " alt="">
+            <img src=" {{url_for('static',filename = user.profile_pic_path)}} " alt="" width="350px">
             {%else%}
             <p>No profile picture</p>
+            {% endif %}
+            {% if user == current_user %}
+            <!-- <a href=" {{url_for('main.update_profile',usernam = user.username)}} ">Edit profile</a> -->
+            <form action=" {{url_for('main.update_pic',usernam = user.username)}} " method="post" enctype="multipart/form-data">
+                <input type="file" name="photo" class="form-control" required>
+                <input type="submit">
+            </form>
             {% endif %}
 
         </div>
@@ -42,7 +49,13 @@
             {% endif %}
 
         </div>
-        <div class="col-md-3"></div>
+        <div class="col-md-3">
+            <button>
+                <a href="/user/{{user.username}}/update">Update bio
+
+                </a>
+            </button>
+        </div>
     </div>
 </div>
 {% endblock %}
