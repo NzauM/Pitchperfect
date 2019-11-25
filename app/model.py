@@ -1,7 +1,7 @@
 #pylint: skip-file
 from app import db
 from werkzeug.security import generate_password_hash,check_password_hash
-from flask_login import login_manager
+from . import login_manager
 from flask_login import UserMixin
 
 
@@ -30,9 +30,9 @@ class Users(UserMixin,db.Model):
     def verify_password(self,password):
         return check_password_hash(self.pass_secure,password)
 
-    # @login_manager.user_loader
-    # def load_user(user_id):
-    #     return Users.query.get(int(user_id))
+    @login_manager.user_loader
+    def load_user(user_id):
+        return Users.query.get(int(user_id))
 
     def __repr__(self):
         return f'User {self.username}'
@@ -42,7 +42,7 @@ class Pitches(db.Model):
     __tablename__ = "pitches"
 
     id = db.Column(db.Integer,primary_key = True)
-    category = db.Column(db.String)
+    category = db.Column(db.String(255))
     pitch = db.Column(db.String)
     author = db.Column(db.String)
 
