@@ -3,6 +3,7 @@ from app import db
 from werkzeug.security import generate_password_hash,check_password_hash
 from . import login_manager
 from flask_login import UserMixin
+from flask_login import login_required,current_user
 
 
 # login_manager = LoginManager()
@@ -45,7 +46,18 @@ class Pitches(db.Model):
     category = db.Column(db.String(255))
     pitch = db.Column(db.String)
     author = db.Column(db.String)
+    user = db.Column(db.String)
 
     def save_pitch(self):
         db.session.add(self)
         db.session.commit()
+    
+    @classmethod
+    def get_pitches(cls):
+        pitches = Pitches.query.all()
+        return pitches
+
+    @classmethod
+    def get_user_pitches(cls,user):
+        user_pitches = Pitches.query.filter_by(user)
+        return user_pitches

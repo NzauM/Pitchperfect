@@ -17,7 +17,7 @@ def index():
     education = Pitches.query.filter_by(category = 'education').all()
     return render_template("index.html", pitches = pitches, business = business, technology = technology, education = education)
 
-@main.route('/pitch', methods = ['GET','POST'])
+@main.route('/new_pitches', methods = ['GET','POST'])
 @login_required
 def new_pitch():
     form = PitchForm()
@@ -27,12 +27,22 @@ def new_pitch():
         pitch = form.pitch.data
         author = form.author.data
 
-        new_pitch = Pitches(category = category,pitch= pitch,author = author)
+        new_pitch = Pitches(category = category,pitch= pitch,author = author,user = current_user.username)
         new_pitch.save_pitch()
         return redirect(url_for('main.index'))
 
     
     return render_template('new_pitches.html',PitchForm = form)
+
+@main.route('/user/<usernam>')
+def profile(usernam):
+    user = Users.query.filter_by(username = usernam).first()
+
+    if user is None:
+        abort(404)
+
+    return render_template("profile/profile.html",user = usernam)
+
     
     
 

@@ -1,4 +1,3 @@
-
 <html lang="en">
 
 <head>
@@ -21,8 +20,11 @@
           <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="pitch">Create Pitch </a>
+          <a class="nav-link" href="/new_pitches">Create Pitch </a>
         </li>
+        <li style="color:white;padding:15px;"> <a href=" {{url_for('main.profile',usernam = current_user.username)}} "> {{ current_user.username }} Profile</a></li>
+        <li>
+
         <li class="nav-item">
           <a class="nav-link" href=" {{url_for('auth.login')}} ">Log In</a>
         </li>
@@ -32,6 +34,26 @@
   <p>
     Welcome to pitch perfect.
   </p>
+  <div class="container-fluid">
+    <h1>
+      <a href="{{url_for('main.profile',usernam = current_user.username)}}">
+        <button> View my pitches</button>
+      </a>
+    </h1>
+  </div>
+  <div class="pitches">
+    {% for pitch in pitches %}
+    <h5>
+      {{pitch.category}}
+    </h5>
+    <p>
+      {{pitch.pitch}}
+    </p>
+    <p>
+      {{ pitch.author }}
+    </p>
+    {% endfor %}
+  </div>
 </body>
 
 </html>
