@@ -2,8 +2,8 @@
 from . import main
 from flask import render_template,request,redirect,url_for
 from flask_login import login_required,current_user
-from .forms import PitchForm
-from ..model import Users,Pitches
+from .forms import PitchForm,CommentForm
+from ..model import Users,Pitches,Comments
 
 
 @main.route('/')
@@ -11,12 +11,20 @@ def index():
     '''
     View root function for the index.html page
     '''
-    pitches = Pitches.query.all()
-    business = Pitches.query.filter_by(category = 'business').all()
-    technology = Pitches.query.filter_by(category = 'technology').all()
-    education = Pitches.query.filter_by(category = 'education').all()
-    return render_template("index.html", pitches = pitches, business = business, technology = technology, education = education)
+    
+    return render_template('index.html')
 
+@main.route('/viewPitches/<category>')
+def viewPitches(category):
+    '''
+    View root function for the viewPitches.html page
+    '''
+    pitches = Pitches.view_pitches(category)
+
+       
+    return render_template('viewPitches.html',category=category,pitches=pitches)
+
+    
 @main.route('/new_pitches', methods = ['GET','POST'])
 @login_required
 def new_pitch():
@@ -38,10 +46,41 @@ def new_pitch():
 def profile(usernam):
     user = Users.query.filter_by(username = usernam).first()
 
+    pitches=Pitches.get_user_pitches(user.username)
+    # print("___________***********************************_________________")
+    # print(pitches)
     if user is None:
         abort(404)
 
-    return render_template("profile/profile.html",user = usernam)
+    return render_template("profile/profile.html",user = user,pitches=pitches)
+
+
+@main.route('/pitch,<id>')
+@login_required
+def pitch(id):
+    pitch = Pitches.query.filter_by(id = id).first()
+
+    comment = Comments.get_comments()
+    return render_template('viewPitches.html',pitch = pitch,comment = comment)
+
+
+@main.route('/comment/<int:id>', methods = ['GET', 'POST'])
+def comment(id):
+
+    form = CommentForm()
+    
+    if form.validate_on_submit():
+        comment = form.comment.data
+        
+        new_comment = Comments(comment = comment,user = current_user.username,pitch_id=id)
+
+        new_comment.save_comment()
+
+        return redirect(url_for('main.index', id = id))
+
+    return render_template('comment.html',commentForm= form)
+
+
 
     
     
