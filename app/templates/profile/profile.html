@@ -1,9 +1,37 @@
 {% extends 'base.html' %}
+
+{% block styles%}
+{{super()}}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+{% endblock styles%}
 {% block content %}
 
 <div class="container">
     <div class="container-fluid">
-        <h1>
+        <div class="card-deck">
+            {% if pitches %}
+            {% for user_pitch in pitches %}
+
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title"> {{user_pitch.category}}</h3>
+                    <p class="card-text">
+                        {{user_pitch.pitch}} <br>
+
+                    </p>
+                    <p class="card-text"><small class="text-muted">Created By:{{user_pitch.author}}</small></p>
+                    </small></p>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+
+            {{user.username}} has no pitches yet.
+            {% endif %}
+
+        </div>
+        <!-- <h1>
             <h3>Pitches</h3>
             {% if pitches %}
                 {% for user_pitch in pitches %}
@@ -20,7 +48,7 @@
             {{user.username}} has no pitches yet.
             {% endif %}
 
-        </h1>
+        </h1> -->
     </div>
     <div class="row">
         <div class="col-md-3">
@@ -31,7 +59,8 @@
             {% endif %}
             {% if user == current_user %}
             <!-- <a href=" {{url_for('main.update_profile',usernam = user.username)}} ">Edit profile</a> -->
-            <form action=" {{url_for('main.update_pic',usernam = user.username)}} " method="post" enctype="multipart/form-data">
+            <form action=" {{url_for('main.update_pic',usernam = user.username)}} " method="post"
+                enctype="multipart/form-data">
                 <input type="file" name="photo" class="form-control" required>
                 <input type="submit">
             </form>
@@ -58,4 +87,13 @@
         </div>
     </div>
 </div>
+<style>
+    body {
+        font-size: 150%;
+
+    }
+    img{
+        margin-top: 20%;
+    }
+</style>
 {% endblock %}
