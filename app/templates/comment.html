@@ -8,6 +8,8 @@
             {{ wtf.quick_form(commentForm) }}
     </div>
     <div class="col-md-3"></div>
-    
+    {% for my_comment in comment %}
+    {{my_comment.comment}}
+    {% endfor %}
 </div>
 {% endblock %}

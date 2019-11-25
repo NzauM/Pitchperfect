@@ -81,6 +81,6 @@ class Comments(db.Model):
         db.session.commit()
 
     @classmethod
-    def get_comments(cls):
-        comment = Comments.query.all()
-        return comment
+    def get_comments(cls,pitch_id):
+        comments = Comments.query.filter_by(pitch_id = pitch_id).all()
+        return comments

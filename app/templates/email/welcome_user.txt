@@ -1,0 +1,5 @@
+Hello  {{user.username}}
+Heellloooo...
+We have seen that you have signed up for pitch perfect.
+We're so glad to have you at pitch perfect.
+Welcome to add or view pitches

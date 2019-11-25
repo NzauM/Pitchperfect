@@ -99,6 +99,7 @@ def pitch(id):
 def comment(id):
 
     form = CommentForm()
+    comment = Comments.get_comments(pitch_id = id)
     
     if form.validate_on_submit():
         comment = form.comment.data
@@ -107,9 +108,9 @@ def comment(id):
 
         new_comment.save_comment()
 
-        return redirect(url_for('main.index', id = id))
+        return redirect(url_for('.comment', id = id))
 
-    return render_template('comment.html',commentForm= form)
+    return render_template('comment.html',commentForm= form,comment = comment)
 
 
 
