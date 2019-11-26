@@ -4,8 +4,8 @@ Author
 [NzauM](https://github.com/NzauM)
 Link to Live Site
 https://pitchperfect2.herokuapp.com/
-Description
-Pitch-Perfect
+##Description
+###Pitch-Perfect
  Remember times when youve had interviews,investor meetings or just catchup 
  sessions with friends ,but then you didnt know how to pitch your converation?
  Pitch perfect is the perfect sarter for you.Pitch perfect will help you view 
@@ -18,10 +18,10 @@ Clone this repository in your termiminal
 `$ sudo apt-get update`
 `$ sudo apt-get install python3.6`
 `$ sudo apt-get install python3-pip`
- `$sudo apt-get install python3.6-venv`
+`$ sudo apt-get install python3.6-venv`
 `$ python3.6 -m venv virtual`
- `$ source virtual/bin/activate`
- ` $ pip install -r requirements.txt`
+`$ source virtual/bin/activate`
+`$ pip install -r requirements.txt`
  ##   Dependencies
     alembic==1.3.1
     bcrypt==3.1.7
