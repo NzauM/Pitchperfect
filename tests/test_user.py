@@ -17,3 +17,5 @@ class UserTest(unittest.TestCase):
 
     def test_verify_password(self):
         self.assertTrue(self.new_user.verify_password('MERCY'))
+
+    
