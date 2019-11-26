@@ -13,15 +13,15 @@ https://pitchperfect2.herokuapp.com/
  and also commenting on those existing.
 ## Installation Requirements
 Clone this repository in your termiminal
-`$ https://github.com/NzauM/Pitchperfect.git
-`$ cd Pitchperfect`
-`$ sudo apt-get update`
-`$ sudo apt-get install python3.6`
-`$ sudo apt-get install python3-pip`
-`$ sudo apt-get install python3.6-venv`
-`$ python3.6 -m venv virtual`
-`$ source virtual/bin/activate`
-`$ pip install -r requirements.txt`
+ * $ https://github.com/NzauM/Pitchperfect.git
+ * $ cd Pitchperfect`
+ * $ sudo apt-get update`
+ * $ sudo apt-get install python3.6`
+ * $ sudo apt-get install python3-pip`
+ * $ sudo apt-get install python3.6-venv`
+ * $ python3.6 -m venv virtual`
+ * $ source virtual/bin/activate`
+ * $ pip install -r requirements.txt`
  ##   Dependencies
     alembic==1.3.1
     bcrypt==3.1.7
