@@ -1,11 +1,11 @@
 # Pitchperfect
 Pitch perfect allows you to get pitches for any category or life circumstance in less than a minute.
-Author
+### Author
 [NzauM](https://github.com/NzauM)
-Link to Live Site
+## Link to Live Site
 https://pitchperfect2.herokuapp.com/
-##Description
-###Pitch-Perfect
+## Description
+## Pitch Perfect
  Remember times when youve had interviews,investor meetings or just catchup 
  sessions with friends ,but then you didnt know how to pitch your converation?
  Pitch perfect is the perfect sarter for you.Pitch perfect will help you view 
