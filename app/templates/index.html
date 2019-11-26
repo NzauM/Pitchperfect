@@ -1,35 +1,67 @@
 {% extends 'base.html' %}
+{% block styles%}
+{{super()}}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link
+  href="https://fonts.googleapis.com/css?family=Josefin+Sans|Kaushan+Script|Marck+Script|Merienda|Monoton&display=swap"
+  rel="stylesheet">
+{% endblock styles%}
 
 
 {% block content %}
- 
-  <p>
-    Welcome to pitch perfect.
-  </p>
-  <!-- <div class="pitches">
-    jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
-      {% for pitch in pitches %}
-      <h5>
-        Pitch1
-        {{pitch.category}}
-      </h5>
-      <p>
-        {{pitch.pitch}}
-      </p>
-      <p>
-        {{ pitch.author }}
-      </p>
-      {% endfor %}
-    </div> -->
-    <a href="/viewPitches/Business">Business Pitches</a>
-    <a href="/viewPitches/Technology">Technology Pitches</a>
-    <a href="/viewPitches/Education">Education Pitches</a>
+<div class="index">
+  <div class="jumbotron">
+    <p id="intro">Welcome to Pitch Perfect<br>
+    Feel free to view and create pitches in the following categories.
+    </p>
+    
+  </div>
+  <img width="700px"class="img-fluid" src="https://www.warnerchappellpm.com/uploads/2017/06/Perfect-Pitch.png" alt="Logo">
+  <button class="btn "> <a href="/viewPitches/Business">Business Pitches</a> </button>
+  <button class=" btn"> <a href="/viewPitches/Technology">Technology Pitches</a> </button>
+  <button class="btn"> <a href="/viewPitches/Education">Education Pitches</a> </button>
+  <button class="btn"><a href="{{url_for('main.profile',usernam = current_user.username)}}">View my pitches</a></button>
+
+
+
   <div class="container-fluid">
     <h1>
-      <a href="{{url_for('main.profile',usernam = current_user.username)}}">
-        <button class="btn btn-danger"> View my pitches</button>
+
+       
       </a>
     </h1>
   </div>
-  
+</div>
+<style>
+  body {
+    background-image: url("https://images.unsplash.com/photo-1440446627372-faa529302be0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    padding-top: 0%;
+    font-family: 'Merienda', cursive;
+
+  }
+
+  .btn{
+    padding:1%;
+    font-size: 150%;
+  }
+  .jumbotron{
+    background-color: transparent;
+    box-shadow: 3px 3px 3px white;
+  }
+
+  #intro{
+    /* padding-top: 10%; */
+    font-size: 200%;
+    color: white;
+    padding-right: 5%;
+    text-align: center;
+  }
+</style>
+
+
 {% endblock %}
