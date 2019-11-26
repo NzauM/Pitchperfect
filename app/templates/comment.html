@@ -8,8 +8,26 @@
             {{ wtf.quick_form(commentForm) }}
     </div>
     <div class="col-md-3"></div>
-    {% for my_comment in comment %}
-    {{my_comment.comment}}
-    {% endfor %}
+   
 </div>
+<div class="col-md-4"></div>
+<div class="col-md-4">
+        {% for my_comment in comment %}
+        {{my_comment.comment}}
+        {% endfor %}
+</div>
+<div class="col-md-4"></div>
+
+<style>
+        body {
+          background-image: url("https://images.unsplash.com/photo-1440446627372-faa529302be0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
+          background-position: center;
+          background-size: cover;
+          background-repeat: no-repeat;
+          height: 100vh;
+          padding-top: 0%;
+          font-family: 'Merienda', cursive;
+      
+        }
+        </style>
 {% endblock %}
